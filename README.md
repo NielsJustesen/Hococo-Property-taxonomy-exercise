@@ -6,6 +6,9 @@ create database: hococo_db
 
 ## Migrate database tables
 
+setup database in the .env file:
+DB_DATABASE=hococo_db
+
 php artisan migrate
 
 ## Start server
