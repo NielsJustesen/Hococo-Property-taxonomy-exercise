@@ -19,6 +19,7 @@ Endpoint = 'http://127.0.0.1:8000/api/node'
 ## POST corporation
 
 Endpoint = 'http://127.0.0.1:8000/api/node'
+
 Type = POST
 
 payload: {
@@ -30,6 +31,7 @@ payload: {
 ## POST building
 
 Endpoint = 'http://127.0.0.1:8000/api/node'
+
 Type = POST
 
 payload: {
@@ -43,6 +45,7 @@ payload: {
 ## POST property
 
 Endpoint = 'http://127.0.0.1:8000/api/node'
+
 Type = POST
 
 payload: {
@@ -62,6 +65,8 @@ returns the children of the node
 ## PUT change parent
 
 Endpoint = 'http://127.0.0.1:8000/api/node/changeParent/{id}'
+
+Type = PUT
 
 payload: {
 "id":1,
