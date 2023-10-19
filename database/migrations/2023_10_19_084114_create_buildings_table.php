@@ -19,7 +19,7 @@ class CreateBuildingsTable extends Migration
             $table->integer('height')->default(0);
             $table->enum('type', ['Building']);
             $table->integer('parent_id')->nullable();
-            $table->decimal('monthly_rent', 10, 2);
+            $table->string('zip_code');
             $table->timestamps();
         });
     }

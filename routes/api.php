@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ApiController;
+use App\Http\Controllers\NodeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,4 +15,6 @@ use App\Http\Controllers\ApiController;
 */
 
 
-Route::get('/data', [ApiController::class, 'getData']);
+Route::post('/node', [NodeController::class, 'store']);
+Route::get('/node/{type}/{id}', [NodeController::class, 'showChildren']);
+Route::put('/node/changeParent/{type}/{id}/{toId}', [NodeController::class, 'changeParent']);

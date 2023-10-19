@@ -19,7 +19,7 @@ class CreatePropertiesTable extends Migration
             $table->integer('height')->default(0);
             $table->enum('type', ['Property']);
             $table->integer('parent_id')->nullable();
-            $table->string('zip_code');
+            $table->decimal('monthly_rent', 10, 2);
             $table->timestamps();
         });
     }
