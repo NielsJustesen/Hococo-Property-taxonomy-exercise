@@ -17,4 +17,6 @@ use App\Http\Controllers\NodeController;
 
 Route::post('/node', [NodeController::class, 'store']);
 Route::get('/node/{type}/{id}', [NodeController::class, 'showChildren']);
-Route::put('/node/changeParent/{type}/{id}/{toId}', [NodeController::class, 'changeParent']);
+Route::get('/node', [NodeController::class, 'getCorporations']);
+// Route::put('/node/changeParent/{type}/{id}/{toId}', [NodeController::class, 'changeParent']);
+Route::put('/node/changeParent/{id}', [NodeController::class, 'changeParent']);

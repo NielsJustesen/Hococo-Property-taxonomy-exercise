@@ -10,9 +10,10 @@ use App\Models\Property;
 class NodeController extends Controller
 {
     //
-    public function getData()
+    public function getCorporations()
     {
-        return response()->json(['message' => 'Data fetched successfully']);
+        $corporations = Corporation::all();
+        return $corporations;
     }
 
     public function store(Request $request) {
@@ -61,35 +62,39 @@ class NodeController extends Controller
         return $result->get();
     }
 
-    public function changeParent($type, $id, $toId) {
+    public function changeParent(Request $request, $id) {
+
+        $type = strtoLower($request->get('type'));
+
+        $parent_id = $request->get('parent_id');
 
         switch ($type) {
 
             case 'building':
 
-                $building = Building::find($id);
+                $building = Building::find($request->get('id'));
 
-                $corporation = Corporation::find($toId);
+                $corporation = Corporation::find($parent_id);
 
                 if(!$corporation) return response()->json(['message'=>"corporation not found"]);
 
-                $building->parent_id = intval($toId);
+                $building->parent_id = intval($parent_id);
 
                 $building->save();
 
-                return response()->json(['message'=>"building parent_id was updated to $toId"], 200);
+                return response()->json(['message'=>"building parent_id was updated to $parent_id"], 200);
 
                 break;
                 
             case 'property':
+                
+                $property = Property::find($request->get('id'));
 
-                $property = Property::find($id);
-
-                $property->parent_id = intval($toId);
+                $property->parent_id = intval($parent_id);
 
                 $property->save();
 
-                return response()->json(['message'=>"property parent_id was updated to $toId"], 200);
+                return response()->json(['message'=>"property parent_id was updated to $parent_id"], 200);
 
                 break;
 
