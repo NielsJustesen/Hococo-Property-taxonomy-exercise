@@ -60,6 +60,8 @@ payload: {
 
 Endpoint = 'http://127.0.0.1:8000/api/node/{type}/{id}'
 
+Type = GET
+
 returns the children of the node
 
 ## PUT change parent
