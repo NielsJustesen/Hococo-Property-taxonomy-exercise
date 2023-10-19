@@ -25,7 +25,7 @@ Type = POST
 payload: {
 "type": "corporation",
 "name": "E-corp",
-"heigt": 0
+"height": 0
 }
 
 ## POST building
@@ -37,7 +37,7 @@ Type = POST
 payload: {
 "type": "building",
 "name": "Den of evil",
-"heigt": 1,
+"height": 1,
 "parent_id": 1,
 "zip_code": 3000
 }
@@ -51,7 +51,7 @@ Type = POST
 payload: {
 "type": "property",
 "name": "Ammitville",
-"heigt": 2,
+"height": 2,
 "parent_id": 1,
 "monthly_rent": 1234
 }
