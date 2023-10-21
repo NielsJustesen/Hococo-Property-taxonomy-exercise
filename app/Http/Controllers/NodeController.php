@@ -86,10 +86,6 @@ class NodeController extends Controller
 
                 $building = Building::find($id);
 
-                $corporation = Corporation::find($parent_id);
-
-                if(!$corporation) return response()->json(['message'=>"corporation not found"], 404);
-
                 return $this->saveNewParent($building, $type, $parent_id);
 
                 break;
@@ -97,10 +93,6 @@ class NodeController extends Controller
             case 'property':
                 
                 $property = Property::find($id);
-
-                $building = Building::find($parent_id);
-
-                if(!$building) return response()->json(['message'=>"building not found"], 404);
 
                 return $this->saveNewParent($property, $type, $parent_id);
 
