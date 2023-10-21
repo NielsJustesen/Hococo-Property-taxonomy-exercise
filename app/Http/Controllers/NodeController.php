@@ -62,9 +62,21 @@ class NodeController extends Controller
         return $result->get();
     }
 
+
+    private function saveNewParent($node, $type, $newParentId) {
+
+        $node->parent_id = intval($newParentId);
+
+        $node->save();
+
+        return response()->json(['message'=>"$type parent_id was updated to $newParentId"], 200);
+    }
+
     public function changeParent(Request $request, $id) {
 
         $type = strtoLower($request->get('type'));
+
+        $id = $request->get('id');
 
         $parent_id = $request->get('parent_id');
 
@@ -72,38 +84,42 @@ class NodeController extends Controller
 
             case 'building':
 
-                $building = Building::find($request->get('id'));
+                $building = Building::find($id);
 
                 $corporation = Corporation::find($parent_id);
 
                 if(!$corporation) return response()->json(['message'=>"corporation not found"], 404);
 
-                $building->parent_id = intval($parent_id);
-
-                $building->save();
-
-                return response()->json(['message'=>"building parent_id was updated to $parent_id"], 200);
+                return $this->saveNewParent($building, $type, $parent_id);
 
                 break;
                 
             case 'property':
                 
-                $property = Property::find($request->get('id'));
+                $property = Property::find($id);
 
                 $building = Building::find($parent_id);
 
                 if(!$building) return response()->json(['message'=>"building not found"], 404);
 
-                $property->parent_id = intval($parent_id);
-
-                $property->save();
-
-                return response()->json(['message'=>"property parent_id was updated to $parent_id"], 200);
+                return $this->saveNewParent($property, $type, $parent_id);
 
                 break;
 
             default:
                 return response()->json(['message'=>'bad request'], 400);
+                break;
+        }
+    }
+
+    public function getAvailableParents($type, $id){
+
+        switch (strToLower($type)) {
+            case 'building':
+                return Corporation::all();
+                break;
+            case 'property':
+                return Building::all();
                 break;
         }
     }
